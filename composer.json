@@ -1,0 +1,12 @@
+{
+    "name": "chinook/album-management",
+    "description": "Chinook Album Management System",
+    "type": "project",
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-pdo": "*"
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
+    }
+} 
