@@ -2,8 +2,6 @@
 require_once 'config.php';
 
 try {
-    $conn = getDBConnection();
-    
     $query = "SELECT a.AlbumId as id, a.Title as title, a.Price as price, 
                      ar.Name as artist_name, ar.ArtistId as artist_id
               FROM Album a
@@ -15,8 +13,11 @@ try {
     
     $albums = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    sendJSONResponse($albums);
+    header('Content-Type: application/json');
+    echo json_encode($albums);
 } catch(PDOException $e) {
-    sendJSONResponse(['error' => $e->getMessage()], 500);
+    header('Content-Type: application/json');
+    http_response_code(500);
+    echo json_encode(['error' => $e->getMessage()]);
 }
 ?> 
